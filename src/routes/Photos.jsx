@@ -11,6 +11,7 @@ const Photos = () => {
   const [error, setError] = useState(null);
 
   const deletePhoto = (id) => {
+    //delete photo api by id withour refresh
     fetch(`https://gallery-app-server.vercel.app/photos/${id}`, {
       method: "DELETE",
     })
@@ -25,10 +26,22 @@ const Photos = () => {
       .catch((error) => {
         console.log("Error: ", error);
       });
-  };
+  }
+  //   fetch(`http://localhost:3001/photos/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setSubmited(data);
+  //     })
+  //     .catch((err) => {
+  //       setError(err);
+  //     });
+  // };
 
   useEffect(() => {
     setLoading(true);
+    //sort photos api
     fetch(`https://gallery-app-server.vercel.app/photos?_sort=id&_order=${sort}`)
       .then((res) => res.json())
       .then((data) => {
@@ -53,9 +66,11 @@ const Photos = () => {
           });
       }
   }, [sort, submited]);
+  
 
   useEffect(() => {
     setLoading(true);
+    //fetch photos api
     fetch(`https://gallery-app-server.vercel.app/photos`)
       .then((res) => res.json())
       .then((data) => {
@@ -66,6 +81,7 @@ const Photos = () => {
         setError(err);
         setLoading(false);
       });
+
   }, []);
 
   if (error) return <h1 style={{ width: "100%", textAlign: "center", marginTop: "20px" }} >Error!</h1>;

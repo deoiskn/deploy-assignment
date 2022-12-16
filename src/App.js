@@ -14,7 +14,7 @@ const App = () => {
           {
             <>
               <h2 className="studentName">Deo Andrianto Iskandar</h2>
-              <p className="studentId">FE999</p>
+              <p className="studentId">FE2699434</p>
             </>
           }
         </div>
